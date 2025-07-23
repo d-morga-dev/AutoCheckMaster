@@ -50,7 +50,7 @@ function Historial() {
     const fetchHistorialData = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/historial');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/historial`);
             setHistorialData(response.data);
         } catch (err) {
             console.error('Error al cargar el historial:', err);
@@ -109,7 +109,7 @@ function Historial() {
                         clienteId = clienteId.replace("r_", "");
                     }
                     const response = await axios.post(
-                        `http://localhost:5000/api/clientes/${clienteId}/vehiculos`,
+                        `${import.meta.env.VITE_API_URL}/api/clientes/${clienteId}/vehiculos`,
                         {
                             marca: vehiculo.marca,
                             modelo: vehiculo.modelo,
@@ -187,7 +187,7 @@ function Historial() {
             }
 
             const response = await axios.post(
-                'http://localhost:5000/api/historial/servicio', 
+                `${import.meta.env.VITE_API_URL}/api/historial/servicio`, 
                 servicioFormData,
                 {
                     headers: { 
@@ -239,7 +239,7 @@ function Historial() {
     // Función para eliminar cliente
     const handleDeleteClient = async (clientId, tipoCliente) => {
         try {
-            await axios.delete(`http://localhost:5000/api/historial/cliente/${clientId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/historial/cliente/${clientId}`, {
                 data: { tipo_cliente: tipoCliente }
             });
             success('Cliente eliminado correctamente');
@@ -253,7 +253,7 @@ function Historial() {
     // Función para eliminar vehículo
     const handleDeleteVehicle = async (vehicleId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/historial/vehiculo/${vehicleId}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/historial/vehiculo/${vehicleId}`);
             success('Vehículo eliminado correctamente');
             await fetchHistorialData();
         } catch (err) {
@@ -265,7 +265,7 @@ function Historial() {
     // Función para eliminar servicio
     const handleDeleteService = async (serviceId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/historial/servicio/${serviceId}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/historial/servicio/${serviceId}`);
             success('Servicio eliminado correctamente');
             await fetchHistorialData();
         } catch (err) {
@@ -614,7 +614,7 @@ function Historial() {
                                       <div className="flex items-center gap-2">
                                         {servicio.pdf_orden && (
                                           <a 
-                                            href={`http://localhost:5000/${servicio.pdf_orden}`}
+                                            href={`${import.meta.env.VITE_API_URL}/${servicio.pdf_orden}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-sm text-[#0E9E6E] hover:text-[#FE6F00] font-semibold"

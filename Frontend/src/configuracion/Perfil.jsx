@@ -30,7 +30,7 @@ const Perfil = () => {
     const fetchPerfil = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('http://localhost:5000/api/perfil');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/perfil`);
         if (response.data) {
           setProfileData(response.data);
           setTempData(response.data);
@@ -52,7 +52,7 @@ const Perfil = () => {
   // Actualizar handleSave para manejar errores específicos
   const handleSave = async () => {
     try {
-      const response = await axios.put('http://localhost:5000/api/perfil', tempData);
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/perfil`, tempData);
       if (response.data) {
         setProfileData(response.data);
         setIsEditing(false);

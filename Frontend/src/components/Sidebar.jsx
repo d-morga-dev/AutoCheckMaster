@@ -38,7 +38,7 @@ const Sidebar = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         // Hacer la petición
-        const response = await axios.get('http://localhost:5000/api/empresa');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/empresa`);
         if (response.data && response.data.logo) {
           setLogoSrc(response.data.logo);
         } else {

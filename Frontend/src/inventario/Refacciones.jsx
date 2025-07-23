@@ -18,7 +18,7 @@ const Refacciones = () => {
 
   const fetchRefacciones = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/refacciones');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/refacciones`);
       setRefacciones(response.data);
       setLoading(false);
     } catch (error) {
@@ -32,7 +32,7 @@ const Refacciones = () => {
 
   const handleAddRefaccion = async (newRefaccion) => {
     try {
-      await axios.post('http://localhost:5000/api/refacciones', newRefaccion);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/refacciones`, newRefaccion);
       await fetchRefacciones();
       setShowForm(false);
       success('Refacción guardada correctamente');
@@ -48,7 +48,7 @@ const Refacciones = () => {
   const confirmarEliminacion = async () => {
     setEliminando(true);
     try {
-      await axios.delete(`http://localhost:5000/api/refacciones/${idAEliminar}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/refacciones/${idAEliminar}`);
       await fetchRefacciones();
       success('Refacción eliminada');
     } catch (error) {

@@ -28,7 +28,7 @@ const Empresa = () => {
     const fetchEmpresa = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('http://localhost:5000/api/empresa');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/empresa`);
         if (response.data) {
           setEmpresaData(response.data);
           setTempData(response.data);
@@ -65,7 +65,7 @@ const Empresa = () => {
         }
 
         const dataToSave = {...tempData, logo: previewLogo};
-        const response = await axios.put('http://localhost:5000/api/empresa', dataToSave);
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/empresa`, dataToSave);
         
         if (response.data) {
             setEmpresaData(response.data);

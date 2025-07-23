@@ -30,8 +30,8 @@ const Ingresos = () => {
   const fetchData = async () => {
     try {
       const [ingresosRes, clientesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/ingresos'),
-        axios.get('http://localhost:5000/api/clientes')
+        axios.get(`${import.meta.env.VITE_API_URL}/api/ingresos`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/clientes`)
       ]);
       setIngresos(ingresosRes.data);
       setClientes(clientesRes.data);
@@ -75,7 +75,7 @@ const Ingresos = () => {
 
   const handleAddIngreso = async (newIngreso) => {
     try {
-      await axios.post('http://localhost:5000/api/ingresos', newIngreso);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/ingresos`, newIngreso);
       await fetchData();
       setShowForm(false);
       success('Ingreso registrado correctamente');
@@ -95,7 +95,7 @@ const Ingresos = () => {
       onConfirm: async () => {
         try {
           setConfirmModal(prev => ({ ...prev, loading: true }));
-          await axios.delete(`http://localhost:5000/api/ingresos/${id}`);
+          await axios.delete(`${import.meta.env.VITE_API_URL}/api/ingresos/${id}`);
           await fetchData();
           success('Ingreso eliminado correctamente');
           setConfirmModal(prev => ({ ...prev, isOpen: false, loading: false }));
@@ -118,7 +118,7 @@ const Ingresos = () => {
       onConfirm: async () => {
         try {
           setConfirmModal(prev => ({ ...prev, loading: true }));
-          await axios.patch(`http://localhost:5000/api/ingresos/${id}/estado`);
+          await axios.patch(`${import.meta.env.VITE_API_URL}/api/ingresos/${id}/estado`);
           await fetchData();
           success('Estado actualizado a "Pagado"');
           setConfirmModal(prev => ({ ...prev, isOpen: false, loading: false }));

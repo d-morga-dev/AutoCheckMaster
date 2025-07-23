@@ -15,7 +15,7 @@ const Home = () => {
   // Función para obtener el conteo de clientes
   const fetchClientesCount = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/clientes');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes`);
       setClientesCount(response.data.length);
     } catch (error) {
       // Error
@@ -25,7 +25,7 @@ const Home = () => {
   // Función para obtener el conteo de refacciones
   const fetchRefaccionesCount = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/refacciones');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/refacciones`);
       setRefaccionesCount(response.data.length);
     } catch (error) {
       // Error
@@ -35,7 +35,7 @@ const Home = () => {
   // Nueva función para obtener los gastos mensuales
   const fetchGastosMensuales = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/gastos');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/gastos`);
       const gastos = response.data;
       
       // Obtener el mes y año actual
@@ -112,7 +112,7 @@ const Home = () => {
       }
       
       // Verificar autenticación con un endpoint real
-      await axios.get('http://localhost:5000/api/auth/verify');
+      await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/verify`);
       
       // Si la autenticación es exitosa, obtener los datos
       await Promise.all([

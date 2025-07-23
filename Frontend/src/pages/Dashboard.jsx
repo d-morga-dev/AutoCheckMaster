@@ -17,9 +17,9 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         const [clientesResponse, ingresosResponse, ordenesResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/clientes'),
-          axios.get('http://localhost:5000/api/ingresos'),
-          axios.get('http://localhost:5000/api/ordenes')
+          axios.get(`${import.meta.env.VITE_API_URL}/api/clientes`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/ingresos`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/ordenes`)
         ]);
 
         const fechaActual = new Date();

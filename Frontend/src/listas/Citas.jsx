@@ -44,7 +44,7 @@ const Citas = () => {
   const fetchCitas = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/citas");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/citas`);
       setCitas(response.data);
     } catch (error) {
       // Error
@@ -63,7 +63,7 @@ const Citas = () => {
     
     setDeletingCita(true);
     try {
-      await axios.delete(`http://localhost:5000/api/citas/${citaToDelete.id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/citas/${citaToDelete.id}`);
       await fetchCitas();
       success("Cita eliminada correctamente");
       setShowConfirmModal(false);
@@ -99,7 +99,7 @@ const Citas = () => {
     
     setUpdatingEstado(true);
     try {
-      await axios.patch(`http://localhost:5000/api/citas/${estadoChange.cita.id}/estado`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/citas/${estadoChange.cita.id}/estado`, {
         estado: estadoChange.nuevoEstado,
       });
       await fetchCitas();
@@ -122,7 +122,7 @@ const Citas = () => {
 
   const handleAgregarCita = async (citaData) => {
     try {
-      await axios.post("http://localhost:5000/api/citas", citaData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/citas`, citaData);
       setShowCitaModal(false);
       await fetchCitas();
       success("Cita agendada correctamente");
