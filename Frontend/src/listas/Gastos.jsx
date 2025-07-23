@@ -82,6 +82,7 @@ const Gastos = () => {
 
   const handleAddGasto = async (newGasto) => {
     try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/gastos`, newGasto);
       await fetchGastos(); // Actualizar la lista después de agregar
       setShowForm(false);
       success('Gasto agregado correctamente');
