@@ -28,15 +28,16 @@ const Login = () => {
     
     try {
         const API_URL = import.meta.env.VITE_API_URL;
-        const response = await axios.post(`${API_URL}/api/auth/login`, formData);
+        const response = await axios.post(`${API_URL}/api/auth/login`, formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
 
         if (response.data.token) {
             // Guardar el token en localStorage
             localStorage.setItem('token', response.data.token);
-            
-            // Configurar el token en los headers de axios
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-            
+            // Redirigir al dashboard o página principal
             navigate('/');
         }
     } catch (error) {

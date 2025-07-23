@@ -4,18 +4,17 @@ import axios from 'axios';
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     }
     // Configurar el token en axios
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  }, []);
+  }, [token, navigate]);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
