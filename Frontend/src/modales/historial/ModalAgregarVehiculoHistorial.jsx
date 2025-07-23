@@ -35,7 +35,7 @@ const ModalAgregarVehiculoHistorial = ({
 					if (typeof clienteId === "string" && clienteId.startsWith("r_")) {
 						clienteId = clienteId.replace("r_", "");
 					}
-					const response = await axios.get(`http://localhost:5000/api/clientes/${clienteId}/vehiculos`);
+					const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes/${clienteId}/vehiculos`);
 					setVehiculos(response.data);
 				} catch (err) {
 					console.error('Error al cargar vehículos:', err);

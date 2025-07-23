@@ -86,7 +86,7 @@ const FormatoChecklist = () => {
 
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch("http://localhost:5000/api/evidencias/upload", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/evidencias/upload`, {
           method: "POST",
           body: formDataFile,
           headers: {

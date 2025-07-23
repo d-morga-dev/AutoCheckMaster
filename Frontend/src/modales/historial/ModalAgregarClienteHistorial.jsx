@@ -25,7 +25,7 @@ const ModalAgregarClienteHistorial = ({
     if (isOpen && esClienteRegistrado) {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/clientes/with-vehiculos');
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes/with-vehiculos`);
           setClientes(response.data);
         } catch (err) {
           console.error('Error al cargar clientes:', err);

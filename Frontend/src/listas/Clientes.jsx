@@ -25,7 +25,7 @@ const Clientes = () => {
   // Función para obtener los clientes
   const fetchClientes = async () => {
     try {
-        const response = await axios.get('http://localhost:5000/api/clientes/with-vehiculos');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes/with-vehiculos`);
         const clientesFormateados = response.data.map(cliente => ({
             id: cliente.id,
             nombre: `${cliente.nombre} ${cliente.apellido}`,
@@ -58,7 +58,7 @@ const Clientes = () => {
     
     setDeleteLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/clientes/${clienteToDelete.id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/clientes/${clienteToDelete.id}`);
       await fetchClientes();
       success('Cliente eliminado correctamente');
       setShowConfirmModal(false);
@@ -79,7 +79,7 @@ const Clientes = () => {
 
   const handleShowDetails = async (clienteId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/clientes/${clienteId}/with-all-vehiculos`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes/${clienteId}/with-all-vehiculos`);
       setSelectedCliente(response.data);
       setShowModal(true);
     } catch (error) {
@@ -92,7 +92,7 @@ const Clientes = () => {
   const handleAgregarCliente = async (clienteData) => {
     setShowClienteModal(false);
     try {
-      await axios.post('http://localhost:5000/api/clientes', clienteData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/clientes`, clienteData);
       success('Cliente agregado correctamente');
       await fetchClientes();
     } catch (err) {

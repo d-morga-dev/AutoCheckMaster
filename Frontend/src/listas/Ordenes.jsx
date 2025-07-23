@@ -48,7 +48,7 @@ const Ordenes = () => {
 
   const fetchOrdenes = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/ordenes');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ordenes`);
       setOrdenes(response.data);
       setLoading(false);
     } catch (error) {
@@ -111,7 +111,7 @@ const Ordenes = () => {
     
     setIsUpdatingTotal(true);
     try {
-      await axios.patch(`http://localhost:5000/api/ordenes/${selectedOrden.id}/total`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/ordenes/${selectedOrden.id}/total`, {
         total: parseFloat(newTotal)
       });
       await fetchOrdenes();
@@ -142,7 +142,7 @@ const Ordenes = () => {
     
     setIsDeleting(true);
     try {
-      await axios.delete(`http://localhost:5000/api/ordenes/${ordenToDelete.id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/ordenes/${ordenToDelete.id}`);
       await fetchOrdenes();
       success('Orden eliminada correctamente');
     } catch (error) {
@@ -169,7 +169,7 @@ const Ordenes = () => {
     
     setIsFinishing(true);
     try {
-      await axios.patch(`http://localhost:5000/api/ordenes/${ordenToFinish.id}/finalizar`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/ordenes/${ordenToFinish.id}/finalizar`, {
         fecha_fin: getLocalDateTimeForSQL(),
         estado: 'Completada'
       });
@@ -191,7 +191,7 @@ const Ordenes = () => {
 
   const handleAgregarOrden = async (ordenData) => {
     try {
-      await axios.post("http://localhost:5000/api/ordenes", ordenData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/ordenes`, ordenData);
       await fetchOrdenes();
       setShowOrdenModal(false);
       success('Orden agregada correctamente');

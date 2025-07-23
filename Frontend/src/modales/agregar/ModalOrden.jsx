@@ -62,9 +62,9 @@ const ModalOrden = ({ isOpen, onClose, onSubmit }) => {
       const fetchData = async () => {
         try {
           const [clientesRes, tecnicosRes, serviciosRes] = await Promise.all([
-            axios.get("http://localhost:5000/api/clientes/with-vehiculos"),
-            axios.get("http://localhost:5000/api/empleados"),
-            axios.get("http://localhost:5000/api/servicios"),
+            axios.get(`${import.meta.env.VITE_API_URL}/api/clientes/with-vehiculos`),
+            axios.get(`${import.meta.env.VITE_API_URL}/api/empleados`),
+            axios.get(`${import.meta.env.VITE_API_URL}/api/servicios`),
           ]);
           setClientes(clientesRes.data);
           setClientesFiltrados(clientesRes.data);

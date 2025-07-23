@@ -22,7 +22,7 @@ router.post('/upload', async (req, res) => {
     await file.mv(uploadPath);
 
     // URL pública (ajusta si tu dominio cambia)
-    const url = `http://localhost:5000/uploads/evidencias/${fileName}`;
+    const url = `${req.protocol}://${req.get('host')}/uploads/evidencias/${fileName}`;
 
     res.json({ url });
   } catch (error) {

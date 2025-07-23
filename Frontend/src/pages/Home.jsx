@@ -61,7 +61,7 @@ const Home = () => {
   // Función para obtener los ingresos mensuales
   const fetchIngresosMensuales = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/ingresos');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ingresos`);
       const ingresos = response.data;
       
       // Objeto para almacenar los totales por mes

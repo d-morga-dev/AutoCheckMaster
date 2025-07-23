@@ -29,7 +29,7 @@ const Servicios = () => {
 
   const fetchServicios = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/servicios');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/servicios`);
       const serviciosFormateados = response.data.map(servicio => ({
         ...servicio,
         precio: parseFloat(servicio.precio)
@@ -64,10 +64,10 @@ const Servicios = () => {
   const handleServicioSubmit = async (data) => {
     try {
       if (servicioEditar) {
-        await axios.put(`http://localhost:5000/api/servicios/${servicioEditar.id}`, data);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/servicios/${servicioEditar.id}`, data);
         success('Servicio actualizado correctamente');
       } else {
-        await axios.post('http://localhost:5000/api/servicios', data);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/servicios`, data);
         success('Servicio creado correctamente');
       }
       await fetchServicios();
@@ -90,7 +90,7 @@ const Servicios = () => {
     
     setIsDeleting(true);
     try {
-      await axios.delete(`http://localhost:5000/api/servicios/${servicioAEliminar.id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/servicios/${servicioAEliminar.id}`);
       await fetchServicios();
       success('Servicio eliminado correctamente');
       setShowConfirmModal(false);

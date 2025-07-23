@@ -105,7 +105,7 @@ const FormatoOrden = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/ordenes/folio/${searchFolio}`
+        `${import.meta.env.VITE_API_URL}/api/ordenes/folio/${searchFolio}`
       );
       const orden = response.data;
 

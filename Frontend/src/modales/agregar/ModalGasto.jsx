@@ -30,7 +30,7 @@ const ModalGasto = ({ isOpen, onClose, onSubmit }) => {
       const fetchProveedores = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:5000/api/proveedores"
+            `${import.meta.env.VITE_API_URL}/api/proveedores`
           );
           const proveedoresActivos = response.data.filter(
             (prov) => prov.estatus === "Activo"
@@ -93,7 +93,7 @@ const ModalGasto = ({ isOpen, onClose, onSubmit }) => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/gastos",
+        `${import.meta.env.VITE_API_URL}/api/gastos`,
         gastoData
       );
       if (response.data) {

@@ -26,7 +26,7 @@ const Proveedores = () => {
 
     const fetchProveedores = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/proveedores');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/proveedores`);
             setProveedores(response.data);
             setLoading(false);
         } catch (error) {
@@ -41,7 +41,7 @@ const Proveedores = () => {
 
     const handleToggleEstatus = async (id) => {
         try {
-            await axios.patch(`http://localhost:5000/api/proveedores/${id}/toggle-estatus`);
+            await axios.patch(`${import.meta.env.VITE_API_URL}/api/proveedores/${id}/toggle-estatus`);
             await fetchProveedores();
             success('Estatus del proveedor actualizado');
         } catch (error) {
@@ -61,7 +61,7 @@ const Proveedores = () => {
         
         setDeleteLoading(true);
         try {
-            await axios.delete(`http://localhost:5000/api/proveedores/${proveedorToDelete._id}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/proveedores/${proveedorToDelete._id}`);
             await fetchProveedores();
             success('Proveedor eliminado correctamente');
             setShowConfirmModal(false);
@@ -88,7 +88,7 @@ const Proveedores = () => {
     const handleAgregarProveedor = async (proveedorData) => {
         setShowProveedorModal(false);
         try {
-            await axios.post('http://localhost:5000/api/proveedores', proveedorData);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/proveedores`, proveedorData);
             success('Proveedor agregado correctamente');
             await fetchProveedores();
         } catch (error) {

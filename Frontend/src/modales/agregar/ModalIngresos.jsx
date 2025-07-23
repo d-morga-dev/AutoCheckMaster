@@ -36,7 +36,7 @@ const ModalIngresos = ({ isOpen, onClose, onSubmit }) => {
     if (isOpen) {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/clientes');
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/clientes`);
           setClientes(response.data);
           setClientesFiltrados(response.data);
         } catch (error) {

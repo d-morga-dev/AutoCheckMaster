@@ -31,7 +31,7 @@ const ModalEmpleado = ({ isOpen, onClose, onSubmit }) => {
     if (isOpen) {
       const fetchEspecialidades = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/especialidades');
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/especialidades`);
           setEspecialidades(response.data);
         } catch (error) {
           // Error
@@ -107,7 +107,7 @@ const ModalEmpleado = ({ isOpen, onClose, onSubmit }) => {
       if (onSubmit) {
         await onSubmit(empleadoData);
       } else {
-        await axios.post('http://localhost:5000/api/empleados', empleadoData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/empleados`, empleadoData);
       }
       setFormData(initialFormData); // Limpiar el formulario después del éxito
       if (onClose) onClose();

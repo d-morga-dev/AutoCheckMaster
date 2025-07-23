@@ -26,7 +26,7 @@ const Empleados = () => {
 
   const fetchEmpleados = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/empleados');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/empleados`);
       setEmpleados(response.data);
       setLoading(false);
     } catch (error) {
@@ -49,7 +49,7 @@ const Empleados = () => {
     
     setDeletingEmpleado(true);
     try {
-      await axios.delete(`http://localhost:5000/api/empleados/${empleadoToDelete.id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/empleados/${empleadoToDelete.id}`);
       await fetchEmpleados();
       success('Empleado eliminado correctamente');
       setShowConfirmModal(false);
@@ -75,7 +75,7 @@ const Empleados = () => {
   const handleAgregarEmpleado = async (empleadoData) => {
     setShowEmpleadoModal(false);
     try {
-      await axios.post('http://localhost:5000/api/empleados', empleadoData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/empleados`, empleadoData);
       await fetchEmpleados();
       success('Empleado registrado correctamente');
     } catch (error) {
