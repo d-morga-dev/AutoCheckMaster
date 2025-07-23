@@ -25,7 +25,7 @@ const Gastos = () => {
     try {
       const [gastosRes, proveedoresRes] = await Promise.all([
         axios.get(`${import.meta.env.VITE_API_URL}/api/gastos`),
-        axios.get(`${import.meta.env.VITE_API_URL}/api/proveedores')
+        axios.get(`${import.meta.env.VITE_API_URL}/api/proveedores`)
       ]);
 
       setGastos(gastosRes.data);
